@@ -130,6 +130,7 @@ export default class ClienteCtrl{
     consultar(requisicao, resposta) {
         if (requisicao.method === 'GET'){
             const cliente = new Cliente();
+
             cliente.consultar().then((listaClientes) => {
                 resposta.status(200).json({
                     "status": true,
