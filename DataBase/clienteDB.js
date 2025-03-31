@@ -1,16 +1,12 @@
 import conectar from "./conexao.js";
 import Cliente from "../Model/cliente.js";
-export default class ClienteDB{
+export default class ClienteDB {
 
-    constructor(){
+    constructor() {
         this.init();
     }
-    //Nós estaremos nos comunicando com uma aplicação
-    //externa (banco de dados)
-    //Portanto nossos métodos serão assíncronos
-    //Significando que a resposta não tem previsão de quando vai chegar
-    //A resposta depende do banco de dados
-    async init(){
+
+    async init() {
         try {
             const conexao = await conectar();
             const sql = `CREATE TABLE IF NOT EXISTS cliente (
@@ -24,14 +20,14 @@ export default class ClienteDB{
                 email VARCHAR(100) NOT NULL
             )`;
             await conexao.execute(sql);
-        } catch ( erro ) {
+        } catch (erro) {
             console.log("Erro ao iniciar a tabela cliente:" + erro);
         }
 
     }
 
-    async gravar(cliente){
-        if (cliente instanceof Cliente){
+    async gravar(cliente) {
+        if (cliente instanceof Cliente) {
             const conexao = await conectar();
             const sql = `INSERT INTO cliente (cpf, nome, endereco, bairro, cidade, uf, telefone, email)
                          VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )`;
@@ -47,16 +43,17 @@ export default class ClienteDB{
             ];
 
             await conexao.execute(sql, parametros);
-            await conexao.release(); //liberar a conexão de volta para o pool
-                         
+            await conexao.release(); 
+
         }
     }
-    async alterar(cliente){
-        if (cliente instanceof Cliente){
+
+    async alterar(cliente) {
+        if (cliente instanceof Cliente) {
             const conexao = await conectar();
             const sql = `UPDATE cliente SET 
                          nome = ?, endereco = ?, bairro = ?, cidade = ?,
-                         uf = ?, telefone = ?, email = ? WHERE cpf = ?`;            
+                         uf = ?, telefone = ?, email = ? WHERE cpf = ?`;
             const parametros = [
                 cliente.nome,
                 cliente.endereco,
@@ -71,8 +68,9 @@ export default class ClienteDB{
             await conexao.release();
         }
     }
-    async excluir(cliente){
-        if (cliente instanceof Cliente){
+
+    async excluir(cliente) {
+        if (cliente instanceof Cliente) {
             const conexao = await conectar();
             const sql = `DELETE FROM cliente WHERE cpf = ?`;
             const parametros = [cliente.cpf];
@@ -80,26 +78,47 @@ export default class ClienteDB{
             await conexao.release();
         }
     }
-    async consultar(){
+
+    async consultar() {
         const conexao = await conectar();
         const sql = `SELECT * FROM cliente ORDER BY nome`;
         const [registros, campos] = await conexao.execute(sql);
         await conexao.release();
         let listaClientes = [];
-        for (const registro of registros){
+        for (const registro of registros) {
             const cliente = new Cliente(registro.cpf,
-                                        registro.nome,
-                                        registro.endereco,
-                                        registro.bairro,
-                                        registro.cidade,
-                                        registro.uf,
-                                        registro.telefone,
-                                        registro.email
-                                        );
+                registro.nome,
+                registro.endereco,
+                registro.bairro,
+                registro.cidade,
+                registro.uf,
+                registro.telefone,
+                registro.email
+            );
             listaClientes.push(cliente);
-                                    
+
         }
         return listaClientes;
+    }
+
+    async consultarPorCpf(cpf) {
+        const conexao = await conectar();
+        const sql = `SELECT * FROM cliente WHERE cpf = ?`;
+        const [registros] = await conexao.execute(sql, [cpf]);
+        await conexao.release();
+        if (registros.length > 0) {
+            return new Cliente(
+                registros[0].cpf,
+                registros[0].nome,
+                registros[0].endereco,
+                registros[0].bairro,
+                registros[0].cidade,
+                registros[0].uf,
+                registros[0].telefone,
+                registros[0].email
+            );
+        }
+        return null;
     }
 
 }

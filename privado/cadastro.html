@@ -1,96 +1,220 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <title>Cadastro de Clientes</title>
-    </head>
-    <body>
-        <br/>
-        <div class="container w-60 border p-5">
-            <h1>Cadastro de Clientes</h1>
-            <form id="formCliente" method="POST" action="#" class="row g-3 needs-validation" novalidate>
-                <div class="col-md-4">
-                    <label for="cpf" class="form-label">CPF:</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" value="" required>
-                    <div class="valid-feedback">
-                    OK!
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="nome" class="form-label">Nome:</label>
-                    <input type="text" class="form-control" id="nome" name="nome" value="" required>
-                    <div class="valid-feedback">
-                    OK!
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="endereco" class="form-label">Endereço:</label>
-                    <input type="text" class="form-control" id="endereco" name="endereco" value="" required>
-                    <div class="valid-feedback">
-                    OK!
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="bairro" class="form-label">Bairro:</label>
-                    <input type="text" class="form-control" id="bairro" name="bairro" value="" required>
-                    <div class="valid-feedback">
-                    OK!
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="cidade" class="form-label">Cidade</label>
-                    <input type="text" class="form-control" id="cidade" name="cidade" required>
-                    <div class="invalid-feedback">
-                    Por favor, informe a cidade!
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label for="uf" class="form-label">Estado</label>
-                    <select class="form-select" id="uf" name="uf" required>
-                    <option selected disabled value="">Escolha o estado...</option>
-                    <option>SP</option>
-                    <option>RJ</option>
-                    <option>PR</option>
-                    <option>MG</option>
-                    </select>
-                    <div class="invalid-feedback">
-                    Por favor, informe o estado.
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label for="telefone" class="form-label">Telefone:</label>
-                    <input type="text" class="form-control" id="telefone" name="telefone" required>
-                    <div class="invalid-feedback">
-                    Por favor, informe o telefone.
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                    <div class="invalid-feedback">
-                    Por favor, informe o email.
-                    </div>
-                </div>
-                
-                <div class="col-12">
-                    <button class="btn btn-primary" id='cadastrar' type="submit">Cadastrar</button>
-                    <button class="btn btn-warning" id='atualizar' type="button" disabled>Atualizar</button>
-                    <button class="btn btn-danger" id='excluir' type="button" disabled>Excluir</button>
-                    <button class="btn btn-secondary" type="button" onclick="history.back()">Voltar</button>
-                </div>
-            </form>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Cadastro de Clientes</title>
+  </head>
+  <body>
+    <br />
+    <div class="container w-60 border p-5">
+      <h1>Quem vai viajar?</h1>
+      <form id="formCliente" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-4">
+          <label for="cpf" class="form-label">CPF:</label>
+          <input type="text" class="form-control" id="cpf" name="cpf" required>
         </div>
-        <br/>
-        <div id="mensagem">
+        <div class="col-md-4">
+          <label for="nome" class="form-label">Nome:</label>
+          <input type="text" class="form-control" id="nome" name="nome" required>
+        </div>
+        <div class="col-md-4">
+          <label for="endereco" class="form-label">Endereço:</label>
+          <input type="text" class="form-control" id="endereco" name="endereco" required>
+        </div>
+        <div class="col-md-4">
+          <label for="bairro" class="form-label">Bairro:</label>
+          <input type="text" class="form-control" id="bairro" name="bairro" required>
+        </div>
+        <div class="col-md-6">
+          <label for="cidade" class="form-label">Cidade</label>
+          <input type="text" class="form-control" id="cidade" name="cidade" required>
+        </div>
+        <div class="col-md-3">
+          <label for="uf" class="form-label">Estado</label>
+          <select class="form-select" id="uf" name="uf" required>
+            <option selected disabled value="">Escolha o estado...</option>
+            <option>SP</option>
+            <option>RJ</option>
+            <option>PR</option>
+            <option>MG</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="telefone" class="form-label">Telefone:</label>
+          <input type="text" class="form-control" id="telefone" name="telefone" required>
+        </div>
+        <div class="col-md-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" id='cadastrar' type="submit">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+    <br />
+    <div id="mensagem" class="alert alert-danger d-none container w-100 mt-3" role="alert"></div>
+    <div class="container mt-3">
+      <h2>Clientes Cadastrados</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Bairro</th>
+            <th>Cidade</th>
+            <th>UF</th>
+            <th>Telefone</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaClientes"></tbody>
+      </table>
+    </div>
+    <script>
+      async function cadastrarCliente() {
+        const cliente = {
+          cpf: document.getElementById("cpf").value,
+          nome: document.getElementById("nome").value,
+          endereco: document.getElementById("endereco").value,
+          bairro: document.getElementById("bairro").value,
+          cidade: document.getElementById("cidade").value,
+          uf: document.getElementById("uf").value,
+          telefone: document.getElementById("telefone").value,
+          email: document.getElementById("email").value
+        };
+        try {
+          const response = await fetch("/api/clientes", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(cliente)
+          });
+          const result = await response.json();
+          if (!response.ok) {
+            throw new Error(result.message || 'Erro ao cadastrar cliente.');
+          }
+          document.getElementById("mensagem").textContent = result.message;
+          document.getElementById("mensagem").classList.remove("d-none");
+          document.getElementById("mensagem").classList.remove("alert-danger");
+          document.getElementById("mensagem").classList.add("alert-success");
+          carregarClientes(); 
+        } catch (error) {
+          document.getElementById("mensagem").textContent = error.message;
+          document.getElementById("mensagem").classList.remove("d-none");
+          document.getElementById("mensagem").classList.remove("alert-success");
+          document.getElementById("mensagem").classList.add("alert-danger");
+        }
+      }
+      async function carregarClientes() {
+        const response = await fetch("/api/clientes");
+        const clientes = await response.json();
+        const tabela = document.getElementById("tabelaClientes");
+        tabela.innerHTML = ""; 
+        clientes.forEach(cliente => {
+          const row = `
+													<tr>
+														<td>${cliente.cpf}</td>
+														<td>${cliente.nome}</td>
+														<td>${cliente.endereco}</td>
+														<td>${cliente.bairro}</td>
+														<td>${cliente.cidade}</td>
+														<td>${cliente.uf}</td>
+														<td>${cliente.telefone}</td>
+														<td>${cliente.email}</td>
+														<td>
+															<button class="btn btn-warning" onclick="editarCliente('${cliente.cpf}')">Editar</button>
+															<button class="btn btn-danger" onclick="excluirCliente('${cliente.cpf}')">Excluir</button>
+														</td>
+													</tr>`;
+          tabela.innerHTML += row;
+        });
+      }
 
-        </div>
-        </br>
-        <div id="espacoTabela">
-            
-        </div>
-    </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="/js/scriptCliente.js"></script>
+      function editarCliente(cpf) {
+        fetch(`/api/clientes/${cpf}`).then(response => response.json()).then(cliente => {
+          document.getElementById("cpf").value = cliente.cpf;
+          document.getElementById("nome").value = cliente.nome;
+          document.getElementById("endereco").value = cliente.endereco;
+          document.getElementById("bairro").value = cliente.bairro;
+          document.getElementById("cidade").value = cliente.cidade;
+          document.getElementById("uf").value = cliente.uf;
+          document.getElementById("telefone").value = cliente.telefone;
+          document.getElementById("email").value = cliente.email;
+          document.getElementById("cadastrar").textContent = "Atualizar";
+          document.getElementById("formCliente").onsubmit = function(event) {
+            event.preventDefault();
+            atualizarCliente(cpf);
+          };
+        });
+      }
+      async function atualizarCliente(cpf) {
+        const cliente = {
+          cpf: document.getElementById("cpf").value,
+          nome: document.getElementById("nome").value,
+          endereco: document.getElementById("endereco").value,
+          bairro: document.getElementById("bairro").value,
+          cidade: document.getElementById("cidade").value,
+          uf: document.getElementById("uf").value,
+          telefone: document.getElementById("telefone").value,
+          email: document.getElementById("email").value
+        };
+        try {
+          const response = await fetch(`/api/clientes/${cpf}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(cliente)
+          });
+          const result = await response.json();
+          if (!response.ok) {
+            throw new Error(result.message || 'Erro ao atualizar cliente.');
+          }
+          document.getElementById("mensagem").textContent = result.message;
+          document.getElementById("mensagem").classList.remove("d-none");
+          document.getElementById("mensagem").classList.remove("alert-danger");
+          document.getElementById("mensagem").classList.add("alert-success");
+          carregarClientes(); 
+          document.getElementById("formCliente").reset(); 
+          document.getElementById("cadastrar").textContent = "Cadastrar"; 
+        } catch (error) {
+          document.getElementById("mensagem").textContent = error.message;
+          document.getElementById("mensagem").classList.remove("d-none");
+          document.getElementById("mensagem").classList.remove("alert-success");
+          document.getElementById("mensagem").classList.add("alert-danger");
+        }
+      }
+      async function excluirCliente(cpf) {
+        if (confirm("Tem certeza que deseja excluir este cliente?")) {
+          const response = await fetch(`/api/clientes/${cpf}`, {
+            method: "DELETE"
+          });
+          if (response.ok) {
+            alert("Cliente excluído com sucesso!");
+            carregarClientes();
+            document.getElementById("mensagem").classList.add("d-none");
+          } else {
+            const errorData = await response.json();
+            alert("Erro ao excluir cliente: " + errorData.error);
+          }
+        }
+      }
+      document.getElementById("formCliente").addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const cpf = document.getElementById("cpf").value;
+        const botao = document.getElementById("cadastrar").textContent;
+        if (botao === "Atualizar") {
+          await atualizarCliente(cpf);
+        } else {
+          await cadastrarCliente();
+        }
+      });
+      document.addEventListener("DOMContentLoaded", carregarClientes);
+    </script>
+  </body>
 </html>
